@@ -161,6 +161,8 @@ class GBDT(object):
         self.estimators=[]
         if self.loss=='mse':
             self.loss=mse()
+        if self.loss=='log':
+            self.loss=log()
         self.score_start=target.mean()
         score=np.ones(len(train))*self.score_start
         for i in range(self.n_estimators):
