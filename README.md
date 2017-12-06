@@ -41,7 +41,7 @@ model = GBDT(n_threads=None,loss='mse',max_depth=3,min_sample_split=10,reg_lambd
 learning_rate=0.1,n_estimators=100)
 ```
 * `n_threads`: Number of threads for multiprocessing. `None` to use all.
-* `loss`: Loss function for gradient boosting. `'mse'`  is mean squared error for regression task and `'log'` is log loss for classification task. Pass a child class of the `loss` class to use customized loss. See [source code](https://github.com/drop-out/MachineLearningFromScratch/blob/master/gbdt.py#L7) for details.
+* `loss`: Loss function for gradient boosting. `'mse'`  is mean squared error for regression task and `'log'` is log loss for classification task. Pass a child class of the `loss` class to use customized loss. See [source code](https://github.com/drop-out/Machine-Learning-From-Scratch/blob/master/gbdt.py#L7) for details.
 * `max_depth`: The maximum depth of a tree.
 * `min_sample_split`: The minimum number of samples required to further split a node.
 * `reg_lambda`: The regularization coefficient for leaf score, also known as lambda.
@@ -63,7 +63,7 @@ Return predictions as numpy array.
 
 **Customized loss**
 
-Define a class that inheritates the `loss` class (see [source code](https://github.com/drop-out/MachineLearningFromScratch/blob/master/gbdt.py#L7)), which specifies the link function, the gradients and the hessian.
+Define a class that inheritates the `loss` class (see [source code](https://github.com/drop-out/Machine-Learning-From-Scratch/blob/master/gbdt.py#L7)), which specifies the link function, the gradients and the hessian.
 
 ```python
 class customized_loss(loss):
