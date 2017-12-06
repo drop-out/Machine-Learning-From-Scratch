@@ -1,4 +1,4 @@
-# MachineLearningFromScratch
+# Machine Learning From Scratch
 **G**radient **B**oosting **D**ecision **T**ree, **S**upport **V**ector **M**achine and **N**eural **N**etwork are arguably the three best machine learning algorithms that has gone through the test of time.
 
 This project implements the three algorithms with simple and neat python code. Those toy codes may not compare to other mature packages such as `xgboost` and `sklearn` in terms of speed and memory consumption, but could help illustrate how those algorithms work.
