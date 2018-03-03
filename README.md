@@ -1,5 +1,5 @@
 # Machine Learning From Scratch
-**G**radient **B**oosting **D**ecision **T**ree, **S**upport **V**ector **M**achine and **N**eural **N**etwork are arguably the three best machine learning algorithms that has gone through the test of time.
+Gradient Boosting Decision Tree, Support Vector Machine and Neural Network are arguably the three best machine learning algorithms that has gone through the test of time.
 
 This project implements the three algorithms with simple and neat python code. Those toy codes may not compare to other mature packages such as `xgboost` and `sklearn` in terms of speed and memory consumption, but could help illustrate how those algorithms work.
 
@@ -11,9 +11,9 @@ All three algorithms are implemented in `Python 3.6`. All three algorithms are b
 
 ## Construction in Progress
 
-The implementation of GBDT has been finished, while SVM and NN are still construction in progress.
+The implementation of GBDT and NN has been finished, while SVM is still construction in progress.
 
-Tutorial of GBDT is provided below.
+Tutorial of GBDT and NN is provided below.
 
 ## GBDT
 
@@ -83,5 +83,51 @@ And the class could be passed when initializing the model.
 model = GBDT(loss=customized_loss,learning_rate=0.1,n_estimators=100)
 ```
 
+## MLP
 
+To implement a full-featured deep learning framework is rather complicated. Instead of doing that, I write a simple Multi-layer Perceptron (MLP) with one hidden layer. This implementation of MLP supports:
+
+- **Loss**: Mean squared loss for regression task and log loss for classfication task.
+- **Activation**: `relu`, `sigmoid` and `linear` activation are supported natively.
+- **Momentum**: Batch gradient descent with momentum optimizer.
+- **Regularization**: L2 regularization, also known as weight decay.
+
+A quick start is provided below.
+
+**Import the module**
+
+```python
+from MLP import MLP
+```
+
+**Initialize model**
+
+```python
+model=MLP(n_hidden_units=100,batch_size=200,n_epochs=200,learning_rate=0.01,momentum=0.9,weight_decay=0.0001,loss='mse')
+```
+
+- `n_hidden_units`: Number of units in the hidden layer.
+- `batch_size`: Number of data points used in each gradient step.
+- `n_epochs`: Number of epochs. Note that this determines the number of epochs (how many times each data point will be used), not the number of gradient steps.
+- `learning_rate`: The learning rate of gradient descent.
+- `momentum`: Momentum for gradient descent update. (Between 0 and 1.)
+- `weight_decay`: Coeffecients for L2 regularization. (Also known as weight decay.)
+- `activation`: Activation function for the hidden layer.`'relu'` for rectified linear units, `'logistic'` for sigmoid activation and `'linear'` for linear activation.
+- `loss`: Loss function,`'mse'` for regression task and `'log_loss'` for classfication task.
+
+**Train**
+
+```python
+model.fit(train,target)
+```
+
+All inputs should be numpy arrays. `train` should be 2D array and `target` should be 1D array.
+
+**Predict**
+
+```python
+model.predict(test)
+```
+
+Return predictions as numpy array.
 
