@@ -72,29 +72,30 @@ class logistic(act):
 
 
 class MLP(object):
-	'''
-	Parameters:
-	----------
-	n_hidden_units: Number of units in the hidden layer.
-	batch_size: Number of data points in each gradient step.
-	n_epochs: Number of epochs.
-	          Note that this determines the number of epochs (how many times each data point will be used),
-	          not the number of gradient steps.
-	learning_rate: The learning rate of gradient descent.
-	momentum: Momentum for gradient descent update. (Between 0 and 1.)
-	weight_decay: Coeffecients for L2 regularization. (Also known as weight decay.)
-	activation: Activation function for the hidden layer.
-	            'relu' for rectified linear units.
-	            'logistic' for sigmoid activation.
-	            'linear' for linear activation
-	loss: Loss function.
-		  'mse' for regression task
-		  'log_loss' for classfication task.
-	'''
+    '''
+    Parameters:
+    ----------
+    n_hidden_units: Number of units in the hidden layer.
+    batch_size: Number of data points used in each gradient step.
+    n_epochs: Number of epochs.
+              Note that this determines the number of epochs (how many times each data point will be used),
+              not the number of gradient steps.
+    learning_rate: The learning rate of gradient descent.
+    momentum: Momentum for gradient descent update. (Between 0 and 1.)
+    weight_decay: Coeffecients for L2 regularization. (Also known as weight decay.)
+    activation: Activation function for the hidden layer.
+                'relu' for rectified linear units.
+                'logistic' for sigmoid activation.
+                'linear' for linear activation
+    loss: Loss function.
+          'mse' for regression task
+          'log_loss' for classfication task.
+    '''
+        
     def __init__(self,
-                 n_hidden_units=5,
-                 batch_size=10,
-                 n_epochs=5,
+                 n_hidden_units=100,
+                 batch_size=200,
+                 n_epochs=200,
                  learning_rate=0.01,
                  momentum=0.9,
                  weight_decay=0.0001,
@@ -114,7 +115,7 @@ class MLP(object):
         elif activation=='logistic':
             self.act1=logistic()
         elif activation=='linear':
-        	self.act1=linear()
+            self.act1=linear()
         else:
             self.act1=activation
 
@@ -192,6 +193,6 @@ class MLP(object):
                         self.update_weights()
 
     def predict(self,test):
-        self.X=test.T
+        self.X=np.matrix(test).T
         self.forward()
         return np.squeeze(np.asarray(self.pred))
